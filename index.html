@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+		<link rel="stylesheet" href="custom.css">
+	</head>
+	<body>
+		<div id="app">
+			<div class="no-connection" v-if="!connected"><i class="fas fa-sync animated rotateOut infinite"></i></div>
+			<div class="image-background" v-if="messageType == 'image' && connected" v-bind:style="{ backgroundImage: 'url(' + message + ')' }"></div>
+			<div class="single-icon" v-if="messageType == 'icon' && connected"><i v-bind:class="iconClass" v-bind:style="messageCSS"></i></div>
+			<div class="text" v-if="messageType == 'text' && connected" v-bind:style="messageCSS">{{ message }}</div>
+			<iframe class="iframe" v-if="messageType == 'html' && connected" v-bind:style="messageCSS" v-bind:src="message"></iframe>
+		</div>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+		<script src="config/default.js"></script>
+		<script src="index.js"></script>
+	</body>
+</html>
