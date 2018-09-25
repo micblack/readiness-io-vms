@@ -16,8 +16,8 @@ const vm = new Vue({
 /*
 const ws = new WebSocket(`ws://${config.channel}.v1.readiness.io/${config.topic}`)
 ws.onmessage = (ev) => {
-	console.log('Got message', ev)
-	let data = JSON.parse(ev.body)
+	let data = JSON.parse(ev.data)
+	console.log('Got message', ev.data)
 	if (data.message) 	vm.message 		= data.message
 	if (data.messageType) vm.messageType 	= data.messageType
 	if (data.messageCSS)  vm.messageCSS 	= data.messageCSS
