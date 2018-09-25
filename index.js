@@ -14,13 +14,14 @@ const vm = new Vue({
 
 // WebSocket onmessage is not firing? falling back to HTTP polling
 /*
-const ws = new WebSocket(['ws://', config.channel, '.v1.readiness.io/', config.topic].join(''))
+const ws = new WebSocket(`ws://${config.channel}.v1.readiness.io/${config.topic}`)
 ws.onmessage = (ev) => {
-	console.log('Got message', ev)
-	if (ev.message) 	vm.message 		= ev.message
-	if (ev.messageType) vm.messageType 	= ev.messageType
-	if (ev.messageCSS)  vm.messageCSS 	= ev.messageCSS
-	if (ev.animation)   vm.animation 	= ev.animation
+	let data = JSON.parse(ev.data)
+	console.log('Got message', ev.data)
+	if (data.message) 	vm.message 		= data.message
+	if (data.messageType) vm.messageType 	= data.messageType
+	if (data.messageCSS)  vm.messageCSS 	= data.messageCSS
+	if (data.animation)   vm.animation 	= data.animation
 }
 ws.onopen = () => {
 	vm.connected = true
