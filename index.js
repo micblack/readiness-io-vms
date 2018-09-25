@@ -13,8 +13,7 @@ const vm = new Vue({
 })
 
 // WebSocket onmessage is not firing? falling back to HTTP polling
-/*
-const ws = new WebSocket(`ws://${config.channel}.v1.readiness.io/${config.topic}`)
+const ws = new ReconnectingWebSocket(`wss://${config.channel}.v1.readiness.io/${config.topic}`)
 ws.onmessage = (ev) => {
 	let data = JSON.parse(ev.data)
 	console.log('Got message', ev.data)
@@ -33,8 +32,7 @@ ws.onclose = (ev) => {
 		location.reload()
 	},1000)
 }
-*/
-
+/*
 const url  = ['//', config.channel, '.v1.readiness.io/', config.topic].join('')
 const tick = setInterval(() => {
 	axios.get(url).then((response) => {
@@ -52,3 +50,4 @@ const tick = setInterval(() => {
 		vm.connected = false
 	})
 }, 1000);
+*/
